@@ -2,5 +2,41 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ng-peek-behind": {
+      "projectType": "library",
+      "root": "projects/ng-peek-behind",
+      "sourceRoot": "projects/ng-peek-behind/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-peek-behind/tsconfig.lib.json",
+            "project": "projects/ng-peek-behind/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-peek-behind/src/test.ts",
+            "tsConfig": "projects/ng-peek-behind/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-peek-behind/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-peek-behind/tsconfig.lib.json",
+              "projects/ng-peek-behind/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "ng-peek-behind"
 }

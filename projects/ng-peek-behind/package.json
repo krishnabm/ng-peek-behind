@@ -1,0 +1,22 @@
+{
+  "name": "ng-peek-behind",
+  "version": "1.0.1",
+  "description": "Utility directive to peek behind overlay panels and dialogs",
+  "main": "index.js",
+  "author": {
+    "name": "Krishna",
+    "email": "krishna.bm1995@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "material",
+    "peek",
+    "peekbehind",
+    "directive"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  }
+}
