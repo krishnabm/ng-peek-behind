@@ -1,6 +1,3 @@
-
-  
-
 # NgPeekBehind  
 
 Utility directive to peek behind overlay panels and dialogs.

@@ -1,27 +1,46 @@
-# NgPeekBehind
+# NgPeekBehind  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+Utility directive to peek behind overlay panels and dialogs.
 
-## Development server
+## Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  
 
-## Code scaffolding
+	<div class="cdk-overlay-pane dialog">
+		<!--Nested inside-->
+		<button
+			[libPeekBehind]="'cdk-overlay-pane'"
+			[libPeekBehindTrigger]="showPanel"
+		>
+		</button>
+	</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Setting `showPanel = false` will fade away the dialog and `showPanel = true` will fade it in.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Inputs
+|Input| Type|Value | Default
+|--|--|--|--|
+|libPeekBehind|`string`| Class to identify parent overlay dialog.|`'cdk-overlay-dialog'`|
+|libPeekBehindTrigger|`boolean`| This input triggers the fade in/out transitions. <br />`true` will fade in the dialog. <br />`false` will fade out the dialog.|-|
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Fallback directive
+`libPeekBehind` directive uses Angular's Animations and AnimationBuilder under the hood. In case you are not happy with the responsiveness, consider using `libPeekBehindListener` which relies on `@HostListener`s to do the job.
 
-## Running end-to-end tests
+In `libPeekBehindListener`, the peeker will listen for `mousedown` event on the attached element to fade out and `document:mouseup` event to fade in, custom trigger cannot be configured -
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Inputs
+|Input| Type|Value | Default
+|--|--|--|--|
+|libPeekBehindListener|`string`| Class to identify parent overlay dialog.|`'cdk-overlay-dialog'`|
 
-## Further help
+### Usage
+	<div class="cdk-overlay-pane dialog">
+		<!--Nested inside-->
+		<button
+			[libPeekBehindListener]="'cdk-overlay-pane'"
+		>
+		</button>
+	</div>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
