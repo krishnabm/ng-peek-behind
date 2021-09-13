@@ -5,7 +5,12 @@
   "main": "index.js",
   "author": {
     "name": "Krishna",
-    "email": "krishna.bm1995@gmail.com"
+    "email": "krishna.bm1995@gmail.com",
+    "url": "https://github.com/krishnabm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/krishnabm/ng-peek-behind.git"
   },
   "license": "MIT",
   "keywords": [
