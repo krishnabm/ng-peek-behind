@@ -1,10 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgPeekBehindListenerDirective } from './ng-peek-behind-listener.directive';
 import { NgPeekBehindDirective } from './ng-peek-behind.directive';
 
 @NgModule({
   imports: [],
-  declarations: [NgPeekBehindDirective],
-  exports: [NgPeekBehindDirective],
+  declarations: [NgPeekBehindDirective, NgPeekBehindListenerDirective],
+  exports: [NgPeekBehindDirective, NgPeekBehindListenerDirective],
 })
 export class NgPeekBehindModule {
   /**

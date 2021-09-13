@@ -1,6 +1,6 @@
 {
   "name": "ng-peek-behind",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Utility directive to peek behind overlay panels and dialogs",
   "main": "index.js",
   "author": {

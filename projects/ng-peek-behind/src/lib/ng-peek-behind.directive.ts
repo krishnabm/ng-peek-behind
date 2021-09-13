@@ -3,13 +3,12 @@ import {
   AnimationBuilder,
   AnimationMetadata,
   AnimationPlayer,
-  style,
+  style
 } from '@angular/animations';
 import {
   Directive,
   ElementRef,
-  HostListener,
-  Input,
+  Input
 } from '@angular/core';
 
 @Directive({
@@ -33,47 +32,35 @@ export class NgPeekBehindDirective {
       '.' + (this.peekPanelClass || 'cdk-overlay-pane')
     ) as HTMLElement;
   }
+
+  @Input()
+  public set libPeekBehindTrigger(show: boolean) {
+    if (this.player) {
+      this.player.destroy();
+    }
+
+    const metadata = show ? this.fadeIn() : this.fadeOut();
+    const factory = this.builder.build(metadata);
+
+    if (this.panelParentElement) {
+      this.player = factory.create(this.panelParentElement);
+      this.player.play();
+    } else {
+      throw new Error('NgPeekBehindDirective: Couldn\'t find parent panel');
+    }
+  }
   //#endregion
 
-  constructor(private host: ElementRef, private builder: AnimationBuilder) {}
+  constructor(private host: ElementRef, private builder: AnimationBuilder) {
+  }
 
   //#region Lifecycle hooks
-  //#endregion
-
-  //#region Listeners
-  @HostListener('document:mouseup', ['$event']) showPanel(_) {
-    if (this.host) {
-      this.element = this.host.nativeElement;
-      this.panelParentElement = this.element.closest(
-        '.' + (this.peekPanelClass || 'cdk-overlay-pane')
-      ) as HTMLElement;
-      const animation = this.panelParentElement.animate([{ opacity: '100%' }], {
-        duration: 400,
-        fill: 'forwards',
-      });
-      animation.play();
-    }
-  }
-
-  @HostListener('mousedown', ['$event']) hidePanel(_) {
-    if (this.host) {
-      this.element = this.host.nativeElement;
-      this.panelParentElement = this.element.closest(
-        '.' + (this.peekPanelClass || 'cdk-overlay-pane')
-      ) as HTMLElement;
-      const animation = this.panelParentElement.animate([{ opacity: '0%' }], {
-        duration: 400,
-        fill: 'forwards',
-      });
-      animation.play();
-    }
-  }
   //#endregion
 
   //#region methods
   private fadeIn(fullOpacity: number = 1): AnimationMetadata[] {
     return [
-      style({ opacity: 0 }),
+      style({ opacity: '*' }),
       animate('400ms ease-in', style({ opacity: fullOpacity })),
     ];
   }
